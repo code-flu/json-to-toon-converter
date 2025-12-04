@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON to TOON Converter Online</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background:#f3f3f3; }
+    h1 { text-align:center; padding:15px; margin:0; background:#222; color:white; }
+    .container { display:flex; height: calc(100vh - 60px); }
+    textarea { width:50%; height:100%; border:none; resize:none; padding:15px; font-size:15px; font-family: monospace; }
+    #jsonInput { border-right:2px solid #ccc; }
+    #toonOutput { background:white; }
+    .toolbar { text-align:center; padding:10px; background:#fff; border-bottom:1px solid #ccc; }
+    button { padding:8px 18px; margin:5px; border:none; background:#0078ff; color:white; font-size:15px; border-radius:6px; cursor:pointer; }
+    button:hover { background:#005fcc; }
+  </style>
+</head>
+<body>
+  <h1>JSON → TOON Converter</h1>
+  <div class="toolbar">
+    <button onclick="convertToToon()">Convert</button>
+    <button onclick="clearAll()">Clear</button>
+  </div>
+  <div class="container">
+    <textarea id="jsonInput" placeholder="Paste JSON here..."></textarea>
+    <textarea id="toonOutput" placeholder="TOON result will appear here..."></textarea>
+  </div>
+
+<script type="module">
+import { encode, decode } from "https://cdn.jsdelivr.net/npm/@toon-format/toon/+esm";
+
+function convertToToon() {
+  const input = document.getElementById('jsonInput').value;
+  try {
+    const parsed = JSON.parse(input);
+    const toon = encode(parsed);
+    document.getElementById('toonOutput').value = toon;
+  } catch (e) {
+    document.getElementById('toonOutput').value = 'Invalid JSON: ' + e.message;
+  }
+}
+
+function clearAll() {
+  document.getElementById('jsonInput').value = '';
+  document.getElementById('toonOutput').value = '';
+}
+
+// expose to global for onclick
+window.convertToToon = convertToToon;
+window.clearAll = clearAll;
+</script>
+</body>
+</html>
