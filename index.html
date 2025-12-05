@@ -31,8 +31,8 @@
     #jsonInput { border-right:2px solid #ccc; }
     #toonOutput { background:white; }
     .toolbar { text-align:center; padding:10px; background:#fff; border-bottom:1px solid #ccc; }
-    button { padding:8px 18px; margin:5px; border:none; background:#0078ff; color:white; font-size:15px; border-radius:6px; cursor:pointer; }
-    button:hover { background:#005fcc; }
+    button { padding:8px 18px; margin:5px; border:none; background:#0057d9; color:#ffffff; font-size:15px; border-radius:6px; cursor:pointer; }
+    button:hover { background:#0046b3; }
   </style>
   <script type="application/ld+json">
   {
@@ -54,15 +54,19 @@
   </script>
 </head>
 <body>
-  <h1>JSON to TOON Converter</h1>
-  <div class="toolbar">
+  <header>
+    <h1>JSON to TOON Converter</h1>
+  </header>
+  <main>
+  <nav class="toolbar" aria-label="Converter toolbar">
     <button onclick="convertToToon()">Convert</button>
     <button onclick="clearAll()">Clear</button>
-  </div>
+  </nav>
   <div class="container">
     <textarea id="jsonInput" aria-label="JSON input" placeholder="Paste JSON here..."></textarea>
     <textarea id="toonOutput" aria-label="TOON output" placeholder="TOON result will appear here..."></textarea>
   </div>
+  </main>
 
 <script type="module">
 import { encode, decode } from "https://cdn.jsdelivr.net/npm/@toon-format/toon/+esm";
